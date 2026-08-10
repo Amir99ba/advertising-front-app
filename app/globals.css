@@ -50,6 +50,8 @@
   --ring: oklch(0.551 0.027 264.364);
 }
 
+
+
 @layer base {
   * {
     border-color: var(--border);

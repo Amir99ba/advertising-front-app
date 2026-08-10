@@ -8,8 +8,6 @@ import { Footer } from "@/components/Footer";
 export default function HomePage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
-      {/*----- هدر -----*/}
-      <Header />
 
       <main>
         {/*----- هیرو سکشن -----*/}
@@ -25,8 +23,6 @@ export default function HomePage() {
         <TestimonialsSection />
       </main>
 
-      {/*----- فوتر -----*/}
-      <Footer />
     </div>
   );
 }

@@ -1,6 +1,9 @@
 // components/Footer.tsx
+"use client";
+
 import React from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Mail, MapPin, Phone } from "lucide-react";
 
 interface NavLink {
@@ -9,19 +12,28 @@ interface NavLink {
 }
 
 const navLinks: NavLink[] = [
-  { label: "خانه", href: "#home" },
-  { label: "خدمات ما", href: "#services" },
-  { label: "درباره ما", href: "#about" },
-  { label: "نظرات مشتریان", href: "#testimonials" },
-  { label: "تماس با ما", href: "#contact" },
+  { label: "خانه", href: "/" },
+  { label: "مجله و پست‌ها", href: "/posts" },
+  { label: "خدمات ما", href: "/#services" },
+  { label: "درباره ما", href: "/#about" },
+  { label: "تماس با ما", href: "/#contact" },
 ];
 
 export function Footer() {
+  const pathname = usePathname();
+
+  // عدم نمایش فوتر عمومی در صفحات پنل مدیریت
+  if (pathname.startsWith("/admin")) {
+    return null;
+  }
+
   return (
     <footer id="contact" className="mx-auto max-w-6xl px-5 py-14 sm:px-8">
       <div className="grid gap-10 md:grid-cols-3">
         <div>
-          <span className="text-lg font-extrabold tracking-tight text-divan-primary">دیوان</span>
+          <span className="text-lg font-extrabold tracking-tight text-divan-primary">
+            دیوان
+          </span>
           <p className="mt-3 max-w-xs text-sm leading-7 text-muted-foreground">
             آژانس تبلیغاتی تمام‌سرویس؛ استراتژی، خلاقیت و اجرا در یک تیم.
           </p>
@@ -33,7 +45,12 @@ export function Footer() {
               aria-label="صفحه ایکس (توییتر)"
               className="grid size-9 place-items-center rounded-md border border-border transition-colors hover:border-divan-primary hover:text-divan-primary"
             >
-              <svg viewBox="0 0 24 24" className="size-4" fill="currentColor" aria-hidden="true">
+              <svg
+                viewBox="0 0 24 24"
+                className="size-4"
+                fill="currentColor"
+                aria-hidden="true"
+              >
                 <path d="M18.9 2h3.3l-7.2 8.3L23 22h-6.6l-5.2-6.8L5.3 22H2l7.7-8.9L1.7 2h6.8l4.7 6.2L18.9 2Zm-1.2 18h1.8L7.4 3.9H5.4L17.7 20Z" />
               </svg>
             </a>
@@ -42,15 +59,29 @@ export function Footer() {
 
         <nav className="flex flex-col gap-3">
           <h3 className="text-sm font-bold">دسترسی سریع</h3>
-          {navLinks.map((l) => (
-            <Link
-              key={l.label}
-              href={l.href}
-              className="text-sm text-muted-foreground transition-colors hover:text-divan-primary"
-            >
-              {l.label}
-            </Link>
-          ))}
+          {navLinks.map((l) => {
+            const isActive =
+              l.href === "/"
+                ? pathname === "/"
+                : pathname.startsWith(l.href) &&
+                  l.href !== "/#services" &&
+                  l.href !== "/#about" &&
+                  l.href !== "/#contact";
+
+            return (
+              <Link
+                key={l.label}
+                href={l.href}
+                className={`text-sm transition-colors ${
+                  isActive
+                    ? "font-bold text-divan-primary"
+                    : "text-muted-foreground hover:text-divan-primary"
+                }`}
+              >
+                {l.label}
+              </Link>
+            );
+          })}
         </nav>
 
         <div className="flex flex-col gap-3">
