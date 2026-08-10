@@ -1,0 +1,30 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Admin {
+  id                  String    @id @default(uuid())
+  phone               String    @unique
+  password            String // رمز عبور هش‌شده در اینجا ذخیره می‌شود
+  failedLoginAttempts Int       @default(0)
+  lockedUntil         DateTime?
+  createdAt           DateTime  @default(now())
+}
+
+model Post {
+  id        String   @id @default(uuid())
+  title     String
+  content   String   @db.Text
+  category  String
+  tags      String[] // آرایه‌ای از استرینگ‌ها در PostgreSQL
+  fileUrl   String? // آدرس فایل آپلود شده (اختیاری)
+  fileType  String? // نوع فایل مثل image, video, pdf (اختیاری)
+  createdAt DateTime @default(now())
+  views     Int      @default(0)
+  updatedAt DateTime @updatedAt
+}
