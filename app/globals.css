@@ -3,25 +3,62 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --radius: 0.5rem;
+  --background: oklch(0.985 0.003 100);
+  --foreground: oklch(0.21 0.015 260);
+  --surface: oklch(0.965 0.004 100);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.21 0.015 260);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.21 0.015 260);
+  --primary: oklch(0.24 0.018 262);
+  --primary-foreground: oklch(0.985 0.003 100);
+  --secondary: oklch(0.955 0.005 260);
+  --secondary-foreground: oklch(0.24 0.018 262);
+  --muted: oklch(0.955 0.005 260);
+  --muted-foreground: oklch(0.53 0.02 260);
+  --accent: oklch(0.66 0.115 55);
+  --accent-foreground: oklch(0.99 0.003 100);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.984 0.003 247.858);
+  --border: oklch(0.905 0.006 260);
+  --input: oklch(0.905 0.006 260);
+  --ring: oklch(0.66 0.115 55);
+  --primary-divan: oklch(0.3766 0.137 22.69);
+  --secondary-divan: oklch(0.9034 0.101 83.96);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+.dark {
+  --background: oklch(0.129 0.042 264.695);
+  --foreground: oklch(0.984 0.003 247.858);
+  --card: oklch(0.208 0.042 265.755);
+  --card-foreground: oklch(0.984 0.003 247.858);
+  --popover: oklch(0.208 0.042 265.755);
+  --popover-foreground: oklch(0.984 0.003 247.858);
+  --primary: oklch(0.929 0.013 255.508);
+  --primary-foreground: oklch(0.208 0.042 265.755);
+  --secondary: oklch(0.279 0.041 260.031);
+  --secondary-foreground: oklch(0.984 0.003 247.858);
+  --muted: oklch(0.279 0.041 260.031);
+  --muted-foreground: oklch(0.704 0.04 256.788);
+  --accent: oklch(0.279 0.041 260.031);
+  --accent-foreground: oklch(0.984 0.003 247.858);
+  --destructive: oklch(0.704 0.191 22.216);
+  --destructive-foreground: oklch(0.984 0.003 247.858);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.551 0.027 264.364);
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
   }
-}
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: "Vazirmatn", ui-sans-serif, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
   }
 }
