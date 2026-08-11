@@ -6,6 +6,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft, Sparkles, TrendingUp, Users, Play, Zap } from "lucide-react";
 import officeImage from "@/assets/agency-office.jpg";
+import delvese from "@/assets/delvese.svg";
+import sarairani from "@/assets/sarairani.svg";
+import snapp from "@/assets/snapp.svg";
 
 export function HeroSection() {
   return (
@@ -45,16 +48,15 @@ export function HeroSection() {
               مسیر رشد برند شما را هموار می‌کند. ما هزینه‌های تبلیغات شما را به ارزش واقعی تبدیل می‌کنیم.
             </p>
 
-            {/* دکمه‌های اقدام (با افکت نور برّاق روی دکمه اصلی) */}
+            {/* دکمه‌های اقدام */}
             <div className="mt-8 flex flex-wrap items-center gap-4 w-full sm:w-auto">
               
-              {/* دکمه اصلی با انیمیشن درخشش نور (Shine/Glow Effect) */}
+              {/* دکمه اصلی */}
               <Link
                 href="#contact"
                 style={{ backgroundColor: "var(--primary-divan)" }}
                 className="relative group overflow-hidden inline-flex items-center justify-center gap-2.5 rounded-full px-8 py-4 text-sm font-bold text-white shadow-lg shadow-[var(--primary-divan)]/25 transition-all duration-300 hover:opacity-95 hover:shadow-xl hover:shadow-[var(--primary-divan)]/35 active:scale-95 w-full sm:w-auto"
               >
-                {/* نور متحرک روی دکمه موقع هاور */}
                 <span className="absolute inset-0 w-full h-full bg-white/20 transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out" />
                 <Zap className="size-4 fill-current text-amber-300 animate-pulse" />
                 <span>مشاوره و شروع همکاری</span>
@@ -74,44 +76,64 @@ export function HeroSection() {
 
             </div>
 
-            {/* سوشال پرووف */}
-            <div className="mt-10 flex flex-wrap items-center gap-6 pt-6 border-t border-slate-200/80">
-              <div className="flex -space-x-2 space-x-reverse overflow-hidden">
-                <img
-                  src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80"
-                  alt="مشتری"
-                  className="inline-block size-9 rounded-full ring-2 ring-white object-cover"
-                />
-                <img
-                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&auto=format&fit=crop&q=80"
-                  alt="مشتری"
-                  className="inline-block size-9 rounded-full ring-2 ring-white object-cover"
-                />
-                <img
-                  src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=100&auto=format&fit=crop&q=80"
-                  alt="مشتری"
-                  className="inline-block size-9 rounded-full ring-2 ring-white object-cover"
-                />
-                <div className="flex size-9 items-center justify-center rounded-full bg-slate-100 ring-2 ring-white text-[11px] font-bold text-slate-700">
-                  +۱۲۰
-                </div>
-              </div>
+            {/* بخش لوگوی مشتریان (با سایز بزرگ‌تر و واضح‌تر) */}
+<div className="mt-10 flex flex-wrap items-center gap-6 pt-6 border-t border-slate-200/80">
+  
+  <div className="flex -space-x-3 space-x-reverse overflow-hidden items-center">
+    {/* لوگوی اسنپ */}
+    <div className="inline-flex size-12 items-center justify-center rounded-full bg-white ring-2 ring-slate-100 shadow-sm p-1.5 z-30">
+      <Image
+        src={snapp}
+        alt="اسنپ"
+        width={36}
+        height={36}
+        className="object-contain size-full"
+      />
+    </div>
 
-              <div className="text-xs text-slate-500">
-                <div className="font-bold text-slate-900 text-sm">اعتماد بیش از ۱۲۰ برند مطرح</div>
-                <div className="mt-0.5">افزایش میانگین ۳.۵ برابری نرخ بازگشت سرمایه (ROI)</div>
-              </div>
-            </div>
+    {/* لوگوی سرای ایرانی */}
+    <div className="inline-flex size-12 items-center justify-center rounded-full bg-white ring-2 ring-slate-100 shadow-sm p-1.5 z-20">
+      <Image
+        src={sarairani}
+        alt="سرای ایرانی"
+        width={36}
+        height={36}
+        className="object-contain size-full"
+      />
+    </div>
+
+    {/* لوگوی دلوسه */}
+    <div className="inline-flex size-12 items-center justify-center rounded-full bg-white ring-2 ring-slate-100 shadow-sm p-1.5 z-10">
+      <Image
+        src={delvese}
+        alt="دلوسه"
+        width={36}
+        height={36}
+        className="object-contain size-full"
+      />
+    </div>
+
+
+    {/* نشانگر شمارنده */}
+    <div className="flex size-12 items-center justify-center rounded-full bg-slate-900 ring-2 ring-white text-xs font-bold text-white shadow-sm">
+      +۱۲۰
+    </div>
+  </div>
+
+  <div className="text-xs text-slate-500">
+    <div className="font-bold text-slate-900 text-sm">اعتماد بیش از ۱۲۰ برند مطرح کشور</div>
+    <div className="mt-0.5">افزایش میانگین ۳.۵ برابری نرخ بازگشت سرمایه (ROI)</div>
+  </div>
+
+</div>
 
           </div>
 
-          {/* ستون تصویر با انیمیشن چرخش سه‌بعدی نرم (3D Rotation on Hover) */}
+          {/* ستون تصویر با انیمیشن چرخش سه‌بعدی نرم */}
           <div className="lg:col-span-5 relative flex justify-center items-center">
             
-            {/* کانتینر با افکت زاویه چرخشی سه‌بعدی */}
             <div className="relative w-full transform lg:rotate-2 hover:rotate-0 transition-transform duration-500 ease-out">
               
-              {/* قاب شیشه‌ای دوره عکس */}
               <div className="relative overflow-hidden rounded-[2.5rem] border border-white/80 bg-white/50 p-2.5 shadow-2xl backdrop-blur-xl">
                 <div className="relative overflow-hidden rounded-[2rem] h-[380px] sm:h-[460px] w-full">
                   <Image

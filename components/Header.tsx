@@ -15,7 +15,7 @@ interface NavLink {
 
 const navLinks: NavLink[] = [
   { label: "خانه", href: "/" },
-  { label: "پروژه ها", href: "/projects" },
+  { label: "پروژه ها", href: "/portfolio" },
   { label: "خدمات ما", href: "/#services" },
   { label: "درباره ما", href: "/#about" },
   { label: "تماس با ما", href: "/#contact" },
