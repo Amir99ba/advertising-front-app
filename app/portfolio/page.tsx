@@ -102,7 +102,7 @@ export default function PortfolioPage() {
 
           <h1 className="text-3xl sm:text-5xl font-black text-slate-900 tracking-tight leading-snug">
             داستان‌های موفقیت و <br />
-            <span className="bg-gradient-to-r from-[var(--primary-divan)] via-purple-600 to-[var(--primary-divan)] bg-clip-text text-transparent">
+            <span className="text-divan-primary">
               پروژه‌های تحول‌آفرین
             </span>
           </h1>

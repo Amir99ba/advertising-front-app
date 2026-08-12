@@ -34,7 +34,6 @@ const services: Service[] = [
     icon: BarChart3,
     title: "دیجیتال مارکتینگ ۳۶۰",
     desc: "طراحی و اجرای کمپین‌های داده‌محور در فضای آنلاین با تمرکز مستقیم بر نرخ بازگشت سرمایه (ROI).",
-    badge: "پایه رشد",
   },
   {
     icon: Sparkles,
@@ -81,7 +80,7 @@ export function ServicesSection() {
 
           <h2 className="text-3xl sm:text-5xl font-black text-slate-900 tracking-tight leading-snug">
             خدماتی که برند شما را به <br />
-            <span className="bg-gradient-to-r from-[var(--primary-divan)] via-purple-600 to-[var(--primary-divan)] bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r text-divan-primary">
               سطح بعدی بازار
             </span>{" "}
             می‌رسانند

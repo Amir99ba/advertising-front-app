@@ -48,7 +48,7 @@ export function PartnersSection() {
 
           <div className="hidden md:flex items-center gap-2 text-xs font-semibold text-slate-400 bg-white px-3.5 py-1.5 rounded-full border border-slate-200/80 shadow-2xs">
             <span className="size-2 rounded-full bg-emerald-500 animate-pulse" />
-            <span>بیش از ۱۲۰ همکار فعال</span>
+            <span>بیش از ۱۰ همکار فعال</span>
           </div>
         </div>
 

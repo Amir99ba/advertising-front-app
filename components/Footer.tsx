@@ -31,23 +31,23 @@ export function Footer() {
   // TODO: Social Media Links Config
   const hasSocialMedia = false; 
 
-  // const socialLinks: SocialLink[] = [
-  //   {
-  //     label: "اینستاگرام",
-  //     href: "https://instagram.com/diwan.agency",
-  //     icon: <Instagram className="size-4" />,
-  //   },
-  //   {
-  //     label: "لینکدین",
-  //     href: "https://linkedin.com/company/diwan-agency",
-  //     icon: <Linkedin className="size-4" />,
-  //   },
-  //   {
-  //     label: "تلگرام",
-  //     href: "https://t.me/diwan_agency",
-  //     icon: <Send className="size-4" />,
-  //   },
-  // ];
+  const socialLinks: SocialLink[] = [
+    {
+      label: "اینستاگرام",
+      href: "https://instagram.com/diwan.agency",
+      icon: <Send className="size-4" />,
+    },
+    {
+      label: "لینکدین",
+      href: "https://linkedin.com/company/diwan-agency",
+      icon: <Send className="size-4" />,
+    },
+    {
+      label: "تلگرام",
+      href: "https://t.me/diwan_agency",
+      icon: <Send className="size-4" />,
+    },
+  ];
 
   if (pathname.startsWith("/admin")) {
     return null;

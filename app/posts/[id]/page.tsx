@@ -83,7 +83,7 @@ export default function SinglePostPage({
   const isImage =
     post?.fileUrl && post?.fileType && post.fileType.startsWith('image/');
   const readTime = post?.content ? calculateReadTime(post.content) : 1;
-  const validImageUrl = getValidImageUrl(post?.fileUrl);
+  const validImageUrl = getValidImageUrl(post?.fileUrl ?? undefined);
 
   return (
     <div

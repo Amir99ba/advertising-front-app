@@ -1,0 +1,9 @@
+{
+  "platform": "next",
+  "app": "divan",
+  "build": {
+    "args": [
+      "LIARA_NPM_INSTALL=true"
+    ]
+  }
+}

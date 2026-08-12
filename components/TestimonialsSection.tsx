@@ -140,7 +140,7 @@ export function TestimonialsSection() {
 
           <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight leading-snug">
             تجربه برندهایی که با <br />
-            <span className="bg-gradient-to-r from-[var(--primary-divan)] via-purple-600 to-[var(--primary-divan)] bg-clip-text text-transparent">
+            <span className="text-divan-primary">
               دیوان مسیر رشد را پیمودند
             </span>
           </h2>

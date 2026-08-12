@@ -27,16 +27,16 @@ export function HeroSection() {
           <div className="lg:col-span-7 flex flex-col justify-center items-start text-right">
             
             {/* نشانگر بالای تیتر */}
-            <div className="inline-flex items-center gap-2.5 rounded-full border border-[var(--primary-divan)]/20 bg-white/60 px-4 py-1.5 text-xs font-semibold text-[var(--primary-divan)] backdrop-blur-md shadow-sm">
+            {/* <div className="inline-flex items-center gap-2.5 rounded-full border border-[var(--primary-divan)]/20 bg-white/60 px-4 py-1.5 text-xs font-semibold text-[var(--primary-divan)] backdrop-blur-md shadow-sm">
               <span className="flex size-2 rounded-full bg-[var(--primary-divan)] animate-pulse" />
               <Sparkles className="size-3.5 text-[var(--primary-divan)]" />
               <span>آژانس تبلیغاتی ۳۶۰ درجه و خلاق دیوان</span>
-            </div>
+            </div> */}
 
             {/* تیتر اصلی */}
             <h1 className="mt-6 text-3xl sm:text-5xl lg:text-6xl font-black leading-[1.2] tracking-tight text-slate-900">
               برند شما شایسته <br />
-              <span className="bg-gradient-to-r from-[var(--primary-divan)] via-purple-600 to-[var(--primary-divan)] bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-[var(--primary-divan)] text-divan-primary bg-clip-text">
                 روایتی متفاوت و خلق رشد
               </span>{" "}
               است
@@ -116,12 +116,12 @@ export function HeroSection() {
 
     {/* نشانگر شمارنده */}
     <div className="flex size-12 items-center justify-center rounded-full bg-slate-900 ring-2 ring-white text-xs font-bold text-white shadow-sm">
-      +۱۲۰
+      +۱۰
     </div>
   </div>
 
   <div className="text-xs text-slate-500">
-    <div className="font-bold text-slate-900 text-sm">اعتماد بیش از ۱۲۰ برند مطرح کشور</div>
+    <div className="font-bold text-slate-900 text-sm">اعتماد بیش از ۱۰ برند مطرح کشور</div>
     <div className="mt-0.5">افزایش میانگین ۳.۵ برابری نرخ بازگشت سرمایه (ROI)</div>
   </div>
 

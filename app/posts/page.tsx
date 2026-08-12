@@ -17,11 +17,24 @@ import {
   ChevronDown,
 } from 'lucide-react';
 
+// اینترفیس مشخص برای پست‌ها
+interface Post {
+  id: string;
+  title: string;
+  content: string;
+  category?: string;
+  createdAt?: string;
+  fileUrl?: string | null;
+  fileType?: string | null;
+  [key: string]: any;
+}
+
 // تعداد پست‌هایی که در هر مرحله نمایش داده می‌شوند
 const POSTS_PER_PAGE = 6;
 
 // تابع محاسبه زمان خواندن
-function calculateReadTime(content: string): number {
+function calculateReadTime(content?: string): number {
+  if (!content) return 1;
   const wordsPerMinute = 200;
   const wordsCount = content.trim().split(/\s+/).length;
   const readTime = Math.ceil(wordsCount / wordsPerMinute);
@@ -29,7 +42,8 @@ function calculateReadTime(content: string): number {
 }
 
 // تابع فرمت تاریخ
-function formatDate(dateString: string): string {
+function formatDate(dateString?: string): string {
+  if (!dateString) return '';
   try {
     return new Intl.DateTimeFormat('fa-IR', {
       year: 'numeric',
@@ -55,24 +69,33 @@ function getValidImageUrl(src?: string | null): string {
 }
 
 export default function PostsListPage() {
-  const { posts, isLoading, isError, error } = usePosts();
+  const { posts = [], isLoading, isError, error } = usePosts();
   const [selectedCategory, setSelectedCategory] = useState<string>('همه');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [visibleCount, setVisibleCount] = useState<number>(POSTS_PER_PAGE);
 
-  // استخراج دسته‌بندی‌های یکتا
-  const categories = [
+  // اطمینان از آرایه بودن posts
+  const safePosts: Post[] = Array.isArray(posts) ? posts : [];
+
+  // استخراج دسته‌بندی‌های یکتا با تایپ صریح string[]
+  const categories: string[] = [
     'همه',
-    ...Array.from(new Set(posts.map((p) => p.category).filter(Boolean))),
+    ...Array.from(
+      new Set(
+        safePosts
+          .map((p: Post) => p.category)
+          .filter((cat): cat is string => Boolean(cat))
+      )
+    ),
   ];
 
   // فیلتر کردن پست‌ها بر اساس جستجو و دسته‌بندی
-  const filteredPosts = posts.filter((post) => {
+  const filteredPosts = safePosts.filter((post: Post) => {
     const matchesCategory =
       selectedCategory === 'همه' || post.category === selectedCategory;
     const matchesSearch =
-      post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      post.content.toLowerCase().includes(searchQuery.toLowerCase());
+      (post.title || '').toLowerCase().includes(searchQuery.toLowerCase()) ||
+      (post.content || '').toLowerCase().includes(searchQuery.toLowerCase());
     return matchesCategory && matchesSearch;
   });
 
@@ -128,7 +151,7 @@ export default function PostsListPage() {
         {/* ۲. فیلتر دسته‌بندی‌ها */}
         {!isLoading && !isError && categories.length > 1 && (
           <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none">
-            {categories.map((cat) => {
+            {categories.map((cat: string) => {
               const isActive = selectedCategory === cat;
               return (
                 <button
@@ -179,7 +202,7 @@ export default function PostsListPage() {
         {isError && (
           <div className="p-4 bg-rose-50 border border-rose-100 text-rose-700 text-sm font-medium rounded-2xl flex items-center gap-3">
             <AlertCircle className="w-5 h-5 shrink-0 text-rose-600" />
-            <span>{error || 'خطایی در دریافت لیست مقالات رخ داد.'}</span>
+            <span>{typeof error === 'string' ? error : 'خطایی در دریافت لیست مقالات رخ داد.'}</span>
           </div>
         )}
 
@@ -208,15 +231,17 @@ export default function PostsListPage() {
                   <div className="lg:col-span-6 p-6 sm:p-8 flex flex-col justify-between h-full order-2 lg:order-1">
                     <div>
                       <div className="flex items-center gap-3 mb-4">
-                        <span
-                          className="px-3.5 py-1 rounded-full text-xs font-bold"
-                          style={{
-                            backgroundColor: 'oklch(0.95 0.03 22.69)',
-                            color: 'var(--primary-divan)',
-                          }}
-                        >
-                          {mainPost.category}
-                        </span>
+                        {mainPost.category && (
+                          <span
+                            className="px-3.5 py-1 rounded-full text-xs font-bold"
+                            style={{
+                              backgroundColor: 'oklch(0.95 0.03 22.69)',
+                              color: 'var(--primary-divan)',
+                            }}
+                          >
+                            {mainPost.category}
+                          </span>
+                        )}
                         <div className="flex items-center gap-1.5 text-xs text-slate-400 font-medium">
                           <Calendar className="w-3.5 h-3.5" />
                           <span>{formatDate(mainPost.createdAt)}</span>
@@ -254,7 +279,7 @@ export default function PostsListPage() {
                     mainPost.fileType?.startsWith('image/') ? (
                       <Image
                         src={getValidImageUrl(mainPost.fileUrl)}
-                        alt={mainPost.title}
+                        alt={mainPost.title || 'تصویر مقاله'}
                         fill
                         className="object-cover group-hover:scale-105 transition-transform duration-500"
                         unoptimized
@@ -274,7 +299,7 @@ export default function PostsListPage() {
             {/* گرید مقالات بعدی */}
             {visiblePosts.length > 0 && (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {visiblePosts.map((post) => {
+                {visiblePosts.map((post: Post) => {
                   const isImage =
                     post.fileUrl &&
                     post.fileType &&
@@ -292,7 +317,7 @@ export default function PostsListPage() {
                         {isImage && post.fileUrl ? (
                           <Image
                             src={getValidImageUrl(post.fileUrl)}
-                            alt={post.title}
+                            alt={post.title || 'تصویر مقاله'}
                             fill
                             className="object-cover group-hover:scale-105 transition-transform duration-500"
                             unoptimized
@@ -303,12 +328,14 @@ export default function PostsListPage() {
                             <span className="text-[11px] font-medium">بدون تصویر</span>
                           </div>
                         )}
-                        <span
-                          className="absolute top-3 right-3 text-[11px] font-bold px-3 py-1 rounded-full backdrop-blur-md bg-white/90 shadow-sm"
-                          style={{ color: 'var(--primary-divan)' }}
-                        >
-                          {post.category}
-                        </span>
+                        {post.category && (
+                          <span
+                            className="absolute top-3 right-3 text-[11px] font-bold px-3 py-1 rounded-full backdrop-blur-md bg-white/90 shadow-sm"
+                            style={{ color: 'var(--primary-divan)' }}
+                          >
+                            {post.category}
+                          </span>
+                        )}
                       </div>
 
                       {/* بدنه کارت */}
@@ -341,7 +368,7 @@ export default function PostsListPage() {
               </div>
             )}
 
-            {/* دکمه بارگذاری مقالات بیشتر (افزایش نرخ درگیری کاربر) */}
+            {/* دکمه بارگذاری مقالات بیشتر */}
             {visibleCount < remainingPosts.length && (
               <div className="pt-8 text-center">
                 <button

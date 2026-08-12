@@ -21,8 +21,8 @@ export async function GET(request: Request) {
     for (const post of posts) {
       const category = post.category.trim() || 'بدون دسته‌بندی';
       categoryTotals.set(category, (categoryTotals.get(category) ?? 0) + post.views);
-      for (const rawTag of Array.from(new Set(post.tags))) {
-        const tag = rawTag.trim();
+      for (const rawTag of Array.from(new Set(post.tags as string[]))) {
+        const tag = typeof rawTag === 'string' ? rawTag.trim() : '';
         if (tag) tagTotals.set(tag, (tagTotals.get(tag) ?? 0) + post.views);
       }
     }
